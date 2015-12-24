@@ -1,0 +1,24 @@
+{
+  "uuid": "4f6d65dd-3d5d-4719-b10c-8ecd8e8217ea",
+  "shortName": "jam-watchface",
+  "longName": "Jam",
+  "companyName": "skelz0r",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "type": "bitmap",
+        "name": "IMAGE_JAM",
+        "file": "images/jam.png"
+      }
+    ]
+  }
+}
