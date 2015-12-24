@@ -17,6 +17,12 @@
   "resources": {
     "media": [
       {
+        "menuIcon": true,
+        "type": "bitmap",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/jam_menu.png"
+      },
+      {
         "type": "font",
         "name": "FONT_AWESOME_18",
         "file": "fonts/fontawesome-webfont.ttf"
