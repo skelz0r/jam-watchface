@@ -17,6 +17,11 @@
   "resources": {
     "media": [
       {
+        "type": "font",
+        "name": "FONT_AWESOME_18",
+        "file": "fonts/fontawesome-webfont.ttf"
+      },
+      {
         "type": "bitmap",
         "name": "IMAGE_JAM",
         "file": "images/jam.png"

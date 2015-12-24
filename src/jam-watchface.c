@@ -7,8 +7,11 @@
 static Window *s_main_window;
 static TextLayer *s_time_layer;
 static TextLayer *s_metric_layer;
+static TextLayer *s_icons_layer;
 static BitmapLayer *s_jam_layer;
 static GBitmap *s_jam_bitmap;
+
+static GFont s_fa_font;
 
 static void update_time() {
   time_t temp = time(NULL);
@@ -45,7 +48,7 @@ static void main_window_load(Window *window) {
   // Create Jam image
   s_jam_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_JAM);
   s_jam_layer = bitmap_layer_create(
-    GRect((bounds.size.w / 2) - 24, 24, 48, 48)
+    GRect((bounds.size.w / 2) - 24, 20, 48, 48)
   );
   bitmap_layer_set_compositing_mode(s_jam_layer, GCompOpSet);
 
@@ -54,7 +57,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_layer, bitmap_layer_get_layer(s_jam_layer));
 
   s_time_layer = text_layer_create(
-    GRect(0, 24 + 42 + 15, bounds.size.w, 50)
+    GRect(0, 20 + 45, bounds.size.w, 50)
   );
 
   text_layer_set_background_color(s_time_layer, GColorClear);
@@ -65,7 +68,7 @@ static void main_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
 
   s_metric_layer = text_layer_create(
-    GRect(0, bounds.size.h - 40, bounds.size.w, 20)
+    GRect(0, bounds.size.h - 44, bounds.size.w, 20)
   );
 
   text_layer_set_background_color(s_metric_layer, GColorClear);
@@ -76,6 +79,21 @@ static void main_window_load(Window *window) {
   text_layer_set_text(s_metric_layer, "jam");
 
   layer_add_child(window_layer, text_layer_get_layer(s_metric_layer));
+
+  s_icons_layer = text_layer_create(
+    GRect(0, bounds.size.h - 64, bounds.size.w, 20)
+  );
+
+  s_fa_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_AWESOME_18));
+
+  text_layer_set_background_color(s_icons_layer, GColorClear);
+  text_layer_set_text_color(s_icons_layer, GColorWhite);
+  text_layer_set_font(s_icons_layer, s_fa_font);
+  text_layer_set_text_alignment(s_icons_layer, GTextAlignmentCenter);
+
+  text_layer_set_text(s_icons_layer, "\uf0c0    \uf086    \uf075");
+
+  layer_add_child(window_layer, text_layer_get_layer(s_icons_layer));
 }
 
 static void main_window_unload(Window *window) {
@@ -122,7 +140,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     snprintf(
       metrics_text_buffer,
       sizeof(metrics_text_buffer),
-      "%d - %d - %d",
+      "%d   %d   %d",
       (int)users_count_tuple->value->int32,
       (int)requests_count_tuple->value->int32,
       (int)messages_count_tuple->value->int32
