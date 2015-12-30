@@ -31,7 +31,7 @@ static void update_time() {
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 
-  if (tick_time->tm_min % 30 == 0) {
+  if (tick_time->tm_min % 20 == 0) {
     DictionaryIterator *iter;
     app_message_outbox_begin(&iter);
 
@@ -91,7 +91,7 @@ static void main_window_load(Window *window) {
   text_layer_set_font(s_icons_layer, s_fa_font);
   text_layer_set_text_alignment(s_icons_layer, GTextAlignmentCenter);
 
-  text_layer_set_text(s_icons_layer, "\uf0c0    \uf086    \uf075");
+  text_layer_set_text(s_icons_layer, "\uf0c0    \uf086    \uf075 ");
 
   layer_add_child(window_layer, text_layer_get_layer(s_icons_layer));
 }
